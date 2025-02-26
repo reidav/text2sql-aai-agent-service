@@ -9,7 +9,7 @@ from agents.sqlwriter import sqlwriter
 from agents.dataviz import dataviz
 from agents.sqlexecutor import sqlexecutor
 
-from evaluate.evaluators import evaluate_article_in_background
+from evaluate.evaluators import evaluate_report
 from prompty.tracer import trace, Tracer, console_tracer, PromptyTracer
 
 types = Literal["message", "database researcher", "sql writer", "sql executor", "dataviz", "error", "partial", ]
