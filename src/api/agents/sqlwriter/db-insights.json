@@ -1,0 +1,6 @@
+[
+  {
+    "title": "Market Data Table Details",
+    "description": "The market_data table is structured to store the daily market data for securities. It includes: market_data_id (primary key) for unique identification, security_id referencing the securities table, and price_date indicating the date of data entry. Daily trading statistics are captured with columns such as open_price, high_price, low_price, and close_price (all DECIMAL(15,2)), and volume to store trade volume (BIGINT). To fetch market data for Microsoft, you need to identify its security_id from the securities table using its symbol or name. Then, use this ID to filter relevant entries in the market_data table."
+  }
+]

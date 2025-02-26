@@ -1,0 +1,5 @@
+Automation
+
+[ ] Create Azure Open AI Service + Embeddedings
+[ ] Configure Azure AI Search Vectorizer using Azure Open AI Embeddings Model
+[ ] Get Azure SQL Connection String in ENV, following AZD up

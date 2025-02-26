@@ -1,0 +1,20 @@
+[
+  {
+    "symbol": "AAPL",
+    "price_date": "2023-01-15T00:00:00",
+    "open_price": 135.0,
+    "close_price": 135.5,
+    "high_price": 136.5,
+    "low_price": 134.75,
+    "volume": 52000000
+  },
+  {
+    "symbol": "AAPL",
+    "price_date": "2023-01-16T00:00:00",
+    "open_price": 135.5,
+    "close_price": 136.75,
+    "high_price": 137.0,
+    "low_price": 135.25,
+    "volume": 48000000
+  }
+]

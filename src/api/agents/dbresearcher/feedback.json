@@ -1,0 +1,5 @@
+{
+    "sql_query": "SELECT * FROM market_data WHERE security_id = (SELECT security_id FROM securities WHERE name = 'Microsoft' OR symbol = 'MSFT') ORDER BY price_date DESC", 
+    "status": "failed", 
+    "error": "('42S22', \"[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'name'. (207) (SQLExecDirectW)\")"
+}
