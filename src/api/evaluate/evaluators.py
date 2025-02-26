@@ -236,6 +236,7 @@ def evaluate_report(data, trace_context):
             "resource_group_name": os.environ["AZURE_RESOURCE_GROUP"],
             "project_name": os.environ["AZURE_AI_PROJECT_NAME"],        
         }
+        print (data)
         evaluator = ReportEvaluator(configuration, project_scope)
         results = evaluator(data)
         resultsJson = json.dumps(results)
@@ -298,24 +299,26 @@ def evaluate_image(image_path):
         return "Image is safe to upload"
 
 
-def evaluate_report_in_background(research_context, product_context, assignment_context, research, products, article):
+def evaluate_report_in_background(question, dbresearch_context, sqlquery_result, sqlexecutor_result, dataviz_result):
     eval_data = {
         "query": json.dumps({
-            "research_context": research_context,
-            "product_context": product_context,
-            "assignment_context": assignment_context
+            "question":question,
+            "dbresearch_context": dbresearch_context,
+            "sqlquery": sqlquery_result["sql_query"]
         }),
         "context": json.dumps({
-            "research": research,
-            "products": products,
+            "sqlquery_result": sqlquery_result,
+            "sqlexecutor_result": sqlexecutor_result
         }),
-        "response": json.dumps(article)
+        "response": json.dumps(dataviz_result)
     }
 
     # propagate trace context to the new thread
     span = trace.get_current_span()
     trace_context = set_span_in_context(span)
-   
+
+    print ("eval_data: ", eval_data)
+    print("trace_context: ", trace_context)
     evaluate_report(eval_data, trace_context)
 
 def evaluate_image(messages):

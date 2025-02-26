@@ -9,7 +9,7 @@ from agents.sqlwriter import sqlwriter
 from agents.dataviz import dataviz
 from agents.sqlexecutor import sqlexecutor
 
-from evaluate.evaluators import evaluate_report
+from evaluate.evaluators import evaluate_report_in_background
 from prompty.tracer import trace, Tracer, console_tracer, PromptyTracer
 
 types = Literal["message", "database researcher", "sql writer", "sql executor", "dataviz", "error", "partial", ]
@@ -70,7 +70,7 @@ def building_agents_message():
     ).to_json_line()
 
 @trace
-def create(question, evaluate=False):
+def create(question, evaluate=True):
     
     feedback = "No Feedback"
 
@@ -100,6 +100,7 @@ def create(question, evaluate=False):
 
         yield start_message("sql writer")
         sqlquery_result = sqlwriter.suggest_sql_query(question, dbresearch_result)
+        print (sqlquery_result)
         yield complete_message("sql writer", sqlquery_result)
 
         yield start_message("sql executor")
@@ -125,13 +126,12 @@ def create(question, evaluate=False):
 
     if evaluate:
         print("Evaluating report...")
-        evaluate_article_in_background(
-            research_context=research_context,
-            product_context=product_context,
-            assignment_context=assignment_context,
-            research=research_result,
-            products=product_result,
-            article=full_result,
+        evaluate_report_in_background(
+            question=question,
+            dbresearch_context=dbresearch_result,
+            sqlquery_result=sqlquery_result,
+            sqlexecutor_result=sqlexecutor_result,
+            dataviz_result=dataviz_result
         )
 
 @trace  

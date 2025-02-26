@@ -3,7 +3,7 @@ import os
 import sys
 import json
 from pathlib import Path
-from .evaluators import ReportEvaluator, ImageEvaluator
+from evaluators import ReportEvaluator, ImageEvaluator
 from orchestrator import create
 from prompty.tracer import trace
 from azure.identity import DefaultAzureCredential
